@@ -1,6 +1,7 @@
-import datetime
+# coding=utf-8
+__author__ = 'Leonard'
 
-import pygame as pygame
+import datetime
 
 
 def is_leap_year(year):
@@ -10,17 +11,21 @@ def is_leap_year(year):
     else:
         return False
 
-def get_num_of_days(year, month):
+
+def get_num_of_days_in_month(year, month):
+    # 给定年月返回月份的天数
     if month in (1, 3, 5, 7, 8, 10, 12):
         return 31
     elif month in (4, 6, 9, 11):
         return 30
     elif is_leap_year(year):
-        return 29  # 闰年2月
+        return 29
     else:
-        return 28  # 平年2月
+        return 28
 
-def get_total_days(year,month):
+
+def get_total_num_of_day(year, month):
+    # 自1800年1月1日以来过了多少天
     days = 0
     for y in range(1800, year):
         if is_leap_year(y):
@@ -29,20 +34,25 @@ def get_total_days(year,month):
             days += 365
 
     for m in range(1, month):
-        days += get_num_of_days(year, m)
+        days += get_num_of_days_in_month(year, m)
 
     return days
 
+
 def get_start_day(year, month):
     # 返回当月1日是星期几，由1800.01.01是星期三推算
-    return 3 + get_total_days(year, month) % 7
+    return 3 + get_total_num_of_day(year, month) % 7
 
+
+# 月份与名称对应的字典
 month_dict = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
               7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
+
 
 def get_month_name(month):
     # 返回当月的名称
     return month_dict[month]
+
 
 def print_month_title(year, month):
     # 打印日历的首部
@@ -50,36 +60,33 @@ def print_month_title(year, month):
 
     print('-------------------------------------')
 
-    print('  Mon  Tue  Wed  Thu  Fri  Sat  Sun  ')
+    print('  Sun  Mon  Tue  Wed  Thu  Fri  Sat')
+
+
 
 def print_month_body(year, month):
-    # 打印日历正文
+    '''
+    打印日历正文
+    格式说明：空两个空格，每天的长度为5
+    需要注意的是print加逗号会多一个空格
+    '''
     i = get_start_day(year, month)
-
-    if i % 7 != 1:
-        print(' ', end=''),
-
-        print('   ' * i, end=''),
-    else:
-        print('', end='')
-
-    for j in range(1, get_num_of_days(year, month) + 1):
+    if i != 7:
+        print('   ', end='')
+          # 打印行首的两个空格
+        print('    ' * i, end='')
+          # 从星期几开始则空5*几个空格
+    for j in range(1, get_num_of_days_in_month(year, month) + 1):
         print('%5d' % j, end='')
-
-
-        if i % 7 == 0:  
-            print('')
-
+          # 宽度控制，4+1=5
         i += 1
+        if i % 7 == 0:  # i用于计数和换行
+            print('')
+              # 每换行一次行首继续空格
 
-def scream():
-    pygame.init()
-    screen = pygame.display.set_mode((500, 500))
 
 #   主函数部分
 month = datetime.datetime.now().month
 year = datetime.datetime.now().year
-print("当前年", year)
-print("当前月", month, "月")
 print_month_title(year, month)
 print_month_body(year, month)

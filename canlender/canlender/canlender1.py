@@ -1,6 +1,3 @@
-# coding=utf-8
-__author__ = 'Leonard'
-
 import datetime
 
 
@@ -40,11 +37,11 @@ def get_total_num_of_day(year, month):
 
 
 def get_start_day(year, month):
-    # 返回当月1日是星期几，由1800.01.01是星期三推算
+    # 返回当月1日是星期几
     return 3 + get_total_num_of_day(year, month) % 7
 
 
-# 月份与名称对应的字典
+# 字典
 month_dict = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
               7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
 
@@ -65,24 +62,16 @@ def print_month_title(year, month):
 
 
 def print_month_body(year, month):
-    '''
-    打印日历正文
-    格式说明：空两个空格，每天的长度为5
-    需要注意的是print加逗号会多一个空格
-    '''
+
     i = get_start_day(year, month)
     if i != 7:
         print('   ', end='')
-          # 打印行首的两个空格
         print('    ' * i, end='')
-          # 从星期几开始则空5*几个空格
     for j in range(1, get_num_of_days_in_month(year, month) + 1):
         print('%5d' % j, end='')
-          # 宽度控制，4+1=5
         i += 1
-        if i % 7 == 0:  # i用于计数和换行
+        if i % 7 == 0:
             print('')
-              # 每换行一次行首继续空格
 
 
 #   主函数部分

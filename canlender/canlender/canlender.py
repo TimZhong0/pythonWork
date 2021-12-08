@@ -6,8 +6,8 @@ win = Tk()
 win.geometry('260x200+500+200')
 
 def show():
-    print(year1.get())
-    print(month1.get())
+    # print(year1.get())
+    # print(month1.get())
     win.quit()
 
 tVar1 = StringVar()
@@ -74,41 +74,41 @@ def get_month_name(month):
     # 返回当月的名称
     return month_dict[month]
 
-def print_month_title(year, month):
-    # 打印日历的首部
-    print('         ', get_month_name(month), '   ', year, '          ')
+# def print_month_title(year, month):
+#     # 打印日历的首部
+#     print('         ', get_month_name(month), '   ', year, '          ')
+#
+#     print('-------------------------------------')
+#
+#     print('  Mon  Tue  Wed  Thu  Fri  Sat  Sun  ')
 
-    print('-------------------------------------')
-
-    print('  Mon  Tue  Wed  Thu  Fri  Sat  Sun  ')
-
-def print_month_body(year, month):
-    # 打印日历正文
-    i = get_start_day(year, month)
-    # print(i)
-    if i % 7 != 1:
-        print(' ', end=''),  # 打印行首的两个空格
-
-        print('   ' * i, end=''),  # 从星期几开始则空5*几个空格
-    else:
-        print('', end='')  # 打印行首的两个空格
-
-    for j in range(1, get_num_of_days(year, month) + 1):
-        print('%5d' % j, end='')  # 宽度控制，4+1=5
-
-
-        if i % 7 == 0:  # i用于计数和换行
-            print('')  # 每换行一次行首继续空格
-
-        i += 1
+# def print_month_body(year, month):
+#     # 打印日历正文
+#     i = get_start_day(year, month)
+#     # print(i)
+#     if i % 7 != 1:
+#         print(' ', end=''),  # 打印行首的两个空格
+#
+#         print('   ' * i, end=''),  # 从星期几开始则空5*几个空格
+#     else:
+#         print('', end='')  # 打印行首的两个空格
+#
+#     for j in range(1, get_num_of_days(year, month) + 1):
+#         print('%5d' % j, end='')  # 宽度控制，4+1=5
+#
+#
+#         if i % 7 == 0:  # i用于计数和换行
+#             print('')  # 每换行一次行首继续空格
+#
+#         i += 1
 
 #   主函数部分
 month = int(month1.get())
 year = int(year1.get())
-print("当前年", year)
-print("当前月", month, "月")
-print_month_title(year, month)
-print_month_body(year, month)
+# print("当前年", year)
+# print("当前月", month, "月")
+# print_month_title(year, month)
+# print_month_body(year, month)
 
 
 
@@ -152,7 +152,7 @@ for j in range(1, get_num_of_days(year, month) + 1):
     # print('%5d' % j, end='')
     body += '%5d' % j
     if i % 7 == 0:
-        print('')# 换行
+        # print('')# 换行
         body += '\n'
 
     i += 1

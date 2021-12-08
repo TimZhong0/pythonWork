@@ -2,7 +2,7 @@ import datetime
 
 import pygame as pygame
 
-from tkinter import *
+
 def is_leap_year(year):
     # 判断是否为闰年
     if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
@@ -44,13 +44,13 @@ def get_month_name(month):
     # 返回当月的名称
     return month_dict[month]
 
-# def print_month_title(year, month):
-#     # 打印日历的首部
-#     print('         ', get_month_name(month), '   ', year, '          ')
-#
-#     print('-------------------------------------')
-#
-#     print('  Mon  Tue  Wed  Thu  Fri  Sat  Sun  ')
+def print_month_title(year, month):
+    # 打印日历的首部
+    print('         ', get_month_name(month), '   ', year, '          ')
+
+    print('-------------------------------------')
+
+    print('  Mon  Tue  Wed  Thu  Fri  Sat  Sun  ')
 
 def print_month_body(year, month):
     # 打印日历正文
@@ -77,33 +77,9 @@ def scream():
     screen = pygame.display.set_mode((500, 500))
 
 #   主函数部分
-
-
-
 month = datetime.datetime.now().month
-month1 = str(month)
 year = datetime.datetime.now().year
-year1 = str(year)
 print("当前年", year)
 print("当前月", month, "月")
-# print_month_title(year, month)
+print_month_title(year, month)
 print_month_body(year, month)
-
-# 头部文件
-root = Tk()
-root.geometry('260x500')
-text1 = Text(root, width=100, height=1)
-text2 = Text(root, width=100, height=1)
-text3 = Text(root, width=100, height=1)
-head1 = ['         ' + get_month_name(month) + '   ' + str(year) + '          ']
-text1.pack()
-text1.insert(INSERT, head1)
-head2 = '''-------------------------------------'''
-text2.pack()
-text2.insert(INSERT, head2)
-head3 = '''  Mon  Tue  Wed  Thu  Fri  Sat  Sun  '''
-text3.pack()
-text3.insert(INSERT, head3)
-
-
-root.mainloop()
